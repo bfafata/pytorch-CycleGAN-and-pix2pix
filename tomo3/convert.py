@@ -26,6 +26,7 @@ if not os.path.exists(file1):
 
 pyname = [name for name in os.listdir() if name.endswith('.png')]
 for imgname in pyname:
+    print("converting", imgname)
     img_copy=cv2.imread(imgname,cv2.IMREAD_ANYDEPTH)
     img_copy=norm_img(img_copy)
     

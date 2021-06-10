@@ -12,6 +12,7 @@ if not os.path.exists(file1):
 pyname = [name for name in os.listdir() if name.endswith('.png')]
 mark = 0
 for imgname in pyname:
+    print("slicing",imgname)
     img = Image.open(imgname)
     for i in range(5):
         for j in range(6):
