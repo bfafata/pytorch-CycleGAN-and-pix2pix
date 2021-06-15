@@ -242,3 +242,23 @@ If you love cats, and love reading cool graphics, vision, and learning papers, p
 
 ## Acknowledgments
 Our code is inspired by [pytorch-DCGAN](https://github.com/pytorch/examples/tree/master/dcgan).
+
+python train.py --dataroot ./tomo3/fin/new --name tomopix3 --model pix2pix --direction BtoA --dataset_mode single
+#keyerror
+
+python train.py --dataroot ./tomo3/fin/new --name tomopix4 --model pix2pix --dataset_mode single
+#keyerror
+
+python train.py --dataroot ./tomo3/fin/new --name tomopix5 --model pix2pix --dataset_mode aligned
+#tomo3/fin/new\train not valid
+
+#renamed new to train
+python train.py --dataroot ./tomo3/fin/ --name tomopix5 --model pix2pix --dataset_mode aligned
+#was to take like 2 days
+
+python train.py --dataroot ./tomo3/fin/ --name tomopix6 --model pix2pix --dataset_mode aligned --max_dataset_size 500
+#took 35 seconds per epoch
+
+####
+python test.py --dataroot ./tomo3test/ --name tomopix6 --model pix2pix --dataset_mode aligned
+//took 50 images
