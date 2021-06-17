@@ -262,3 +262,6 @@ python train.py --dataroot ./tomo3/fin/ --name tomopix6 --model pix2pix --datase
 ####
 python test.py --dataroot ./tomo3test/ --name tomopix6 --model pix2pix --dataset_mode aligned
 //took 50 images
+
+___
+python dataprep.py 

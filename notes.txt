@@ -1,0 +1,43 @@
+python train.py --dataroot ./tomo3/fin/new --name tomopix3 --model pix2pix --direction BtoA --dataset_mode single
+#keyerror
+
+python train.py --dataroot ./tomo3/fin/new --name tomopix4 --model pix2pix --dataset_mode single
+#keyerror
+
+python train.py --dataroot ./tomo3/fin/new --name tomopix5 --model pix2pix --dataset_mode aligned
+#tomo3/fin/new\train not valid
+
+#renamed new to train
+python train.py --dataroot ./tomo3/fin/ --name tomopix5 --model pix2pix --dataset_mode aligned
+#was to take like 2 days
+
+python train.py --dataroot ./tomo3/fin/ --name tomopix6 --model pix2pix --dataset_mode aligned --max_dataset_size 500
+#took 35 seconds per epoch
+
+python train.py --dataroot ./tomo3/fin/ --name tomopix7 --model pix2pix --dataset_mode aligned --max_dataset_size 500 --preprocess none --gpu_ids 0 --input_nc 1 --output_nc 1
+The image size needs to be a multiple of 4. The loaded image size was (33, 33), so it was adjusted to (32, 32). This adjustment will be done to all images whose sizes are not multiples of 4
+ValueError: Expected more than 1 value per channel when training, got input size torch.Size([1, 512, 1, 1])
+python train.py --dataroot ./tomo3/fin/ --name tomopix8 --model pix2pix --dataset_mode aligned --max_dataset_size 500 --load_size 32 --crop_size 32 --gpu_ids 0 --input_nc 1 --output_nc 1
+valueerror as before
+python train.py --dataroot ./tomo3/fin/ --name tomopix9 --model pix2pix --dataset_mode aligned --max_dataset_size 500 --load_size 32 --crop_size 32 --gpu_ids 0
+valueerror again
+python train.py --dataroot ./tomo3/fin/ --name tomopix10 --model pix2pix --dataset_mode aligned --max_dataset_size 500
+works
+python train.py --dataroot ./tomo3/ --name tomopix11 --model pix2pix --dataset_mode aligned --max_dataset_size 500 --crop_size 32
+python train.py --dataroot ./tomo3/ --name tomopix12 --model pix2pix --dataset_mode aligned --max_dataset_size 500 --load_size 264
+####
+python test.py --dataroot ./tomo3test/ --name tomopix6 --model pix2pix --dataset_mode aligned
+//took 50 images
+
+# python fid_score.py path/to/fake path/to/real --device cuda:0
+___________
+python dataprep.py --densitymap_path ./1f1bsnrinf/densitymap_png/ --subtomogram_path ./1f1bsnrinf/subtomogram_png/ --resultfolder ./1f1bsnrinf/test
+python test.py --dataroot ./1f1bsnrinf/ --name tomopix6 --model pix2pix --dataset_mode aligned --num_test 500
+python dataprepFID.py --imagespath ./results/tomopix6/test_latest/images/ --path_real ./1f1bsnrinf/real/ --path_fake ./1f1bsnrinf/fake/
+python fid_score.py ./1f1bsnrinf/real/ ./1f1bsnrinf/real/ --device cuda:0
+(result was 43)
+___
+python test.py --dataroot ./1f1bsnrinf/ --name tomopix12 --model pix2pix --dataset_mode aligned --num_test 500
+python dataprepFID.py --imagespath ./results/tomopix12/test_latest/images/ --path_real ./1f1bsnrinf/real1/ --path_fake ./1f1bsnrinf/fake1/
+python fid_score.py ./1f1bsnrinf/real1/ ./1f1bsnrinf/fake1/ --device cuda:0
+(result 41)
